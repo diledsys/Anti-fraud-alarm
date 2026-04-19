@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a99966fd8d9e444ac025c7d4e9cefa, type: 3}
+  m_Name: CameraFollowSettings
+  m_EditorClassIdentifier: Assembly-CSharp::Config.CameraFollowSettings
+  targetOffset: {x: -1.38, y: 0, z: -7.35}
+  cameraOffset: {x: 0, y: 3.5, z: -6}
+  positionSmoothTime: 0.185
+  deadZone:
+    serializedVersion: 2
+    x: 0.35
+    y: 0.25
+    width: 0.3
+    height: 0.5
+  useBounds: 0
+  minXZ: {x: -9999, y: -9999}
+  maxXZ: {x: 9999, y: 9999}
+  drawGizmos: 1
+  useLookAhead2D: 1
+  lookAheadDistance2D: 3.09
+  lookAheadSmoothTime2D: 0.15
+  lookAheadMinSpeed2D: 0.1
