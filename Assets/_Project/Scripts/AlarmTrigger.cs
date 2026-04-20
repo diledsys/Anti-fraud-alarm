@@ -1,18 +1,20 @@
 using UnityEngine;
 
-public class DoorTrigger : MonoBehaviour
+[RequireComponent(typeof(Collider))]
+public class AlarmTrigger : MonoBehaviour
 {
-    [SerializeField] private Door _door;
+    [SerializeField] private House _house;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Thief>(out _))
-            _door.Open();
+            _house.OnThiefEntered();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<Thief>(out _))
-            _door.Close();
+            _house.OnThiefExited();
     }
 }
+
