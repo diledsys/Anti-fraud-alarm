@@ -1,18 +1,21 @@
+using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class DoorTrigger : MonoBehaviour
 {
-    [SerializeField] private Door _door;
+    public event Action ThiefFound;
+    public event Action ThiefLost;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Thief>(out _))
-            _door.Open();
+            ThiefFound?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<Thief>(out _))
-            _door.Close();
+            ThiefLost?.Invoke();
     }
 }

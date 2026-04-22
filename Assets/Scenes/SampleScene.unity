@@ -912,9 +912,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1794347bce1897f42b62772ad976a25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  _closedPositionAngle: {x: 0, y: 0, z: 0}
-  _openedPositionAngle: {x: 0, y: 90, z: 0}
-  _rotateSpeed: 300
+  _openAngle: 90
+  _rotationSpeed: 180
+  _rotationTolerance: 0.1
 --- !u!1001 &1033650940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1190,8 +1190,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1080774803}
+  - component: {fileID: 1080774804}
   m_Layer: 0
-  m_Name: Models
+  m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1232,6 +1233,22 @@ Transform:
   - {fileID: 748579174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1080774804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080774802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3867fb594d31654fb4a9187027fdd27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::House
+  _doorTrigger: {fileID: 1587872522}
+  _alarmTrigger: {fileID: 2072212305}
+  _door: {fileID: 860607988}
+  _alarm: {fileID: 1397982998}
 --- !u!1001 &1081013220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1365,6 +1382,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 421259392900612382, guid: d94bd51ebcc782143b841edf9e3dbf00, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1091580303}
+    - targetCorrespondingSourceObject: {fileID: 421259392900612382, guid: d94bd51ebcc782143b841edf9e3dbf00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1091580310}
   m_SourcePrefab: {fileID: 100100000, guid: d94bd51ebcc782143b841edf9e3dbf00, type: 3}
 --- !u!4 &1091580295 stripped
 Transform:
@@ -1392,6 +1412,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1091580310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531518528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b74cd0916ab084cb1a88eecf293147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Thief
 --- !u!1 &1098083341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,7 +2268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Alarm
   _maxVolume: 1
-  _changeSpeed: 0.1
+  _changeSpeed: 0.2
 --- !u!82 &1397982999
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2456,7 +2488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d7dc9c4ca247148a8eaf90fc40251d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorTrigger
-  _door: {fileID: 860607988}
 --- !u!65 &1587872523
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2622,7 +2653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75fe10543827c043af361f8a8537c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AlarmZone
-  _alarm: {fileID: 1397982998}
 --- !u!1001 &1848446898153559373
 PrefabInstance:
   m_ObjectHideFlags: 0

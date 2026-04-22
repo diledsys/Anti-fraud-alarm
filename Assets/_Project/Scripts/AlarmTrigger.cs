@@ -1,20 +1,21 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class AlarmTrigger : MonoBehaviour
 {
-    [SerializeField] private House _house;
+    public event Action ThiefFound;
+    public event Action ThiefLost;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Thief>(out _))
-            _house.OnThiefEntered();
+            ThiefFound?.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<Thief>(out _))
-            _house.OnThiefExited();
+            ThiefLost?.Invoke();
     }
 }
-

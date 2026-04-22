@@ -1,30 +1,53 @@
+using System.Collections;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] private Vector3 _closedPositionAngle;
-    [SerializeField] private Vector3 _openedPositionAngle;
-    [SerializeField] private float _rotateSpeed = 120f;
+    [SerializeField] private float _openAngle = 90f;
+    [SerializeField] private float _rotationSpeed = 180f;
+    [SerializeField] private float _rotationTolerance = 0.1f;
 
-    private bool _isOpen;
+    private Quaternion _closedRotation;
+    private Quaternion _openedRotation;
+    private Coroutine _rotationCoroutine;
 
-    private void Update()
+    private void Awake()
     {
-        Quaternion targetRotation = Quaternion.Euler(_isOpen ? _openedPositionAngle : _closedPositionAngle);
-
-        transform.localRotation = Quaternion.RotateTowards(
-            transform.localRotation,
-            targetRotation,
-            _rotateSpeed * Time.deltaTime);
+        _closedRotation = transform.localRotation;
+        _openedRotation = _closedRotation * Quaternion.Euler(0f, _openAngle, 0f);
     }
 
     public void Open()
     {
-        _isOpen = true;
+        StartRotation(_openedRotation);
     }
 
     public void Close()
     {
-        _isOpen = false;
+        StartRotation(_closedRotation);
+    }
+
+    private void StartRotation(Quaternion targetRotation)
+    {
+        if (_rotationCoroutine != null)
+            StopCoroutine(_rotationCoroutine);
+
+        _rotationCoroutine = StartCoroutine(Rotate(targetRotation));
+    }
+
+    private IEnumerator Rotate(Quaternion targetRotation)
+    {
+        while (Quaternion.Angle(transform.localRotation, targetRotation) > _rotationTolerance)
+        {
+            transform.localRotation = Quaternion.RotateTowards(
+                transform.localRotation,
+                targetRotation,
+                _rotationSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+
+        transform.localRotation = targetRotation;
+        _rotationCoroutine = null;
     }
 }
